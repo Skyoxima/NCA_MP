@@ -395,12 +395,17 @@ export function createCA(gl, layerWeights, gridSize) {
       lastDamage = [x, y, r];
     }
   }
+
   function reset() {
     paint(0, 0, 10000, "clear");
     paint(gridW / 2, gridH / 2, 1, "seed");
     totalStepCount = 0;
   }
   reset();
+
+  function circularDamage() {
+    paint(gridW / 2, gridH / 2, 8, "clear");
+  }
 
   function step() {
     for (const op of ops) op();
@@ -468,6 +473,7 @@ export function createCA(gl, layerWeights, gridSize) {
 
   return {
     reset,
+    circularDamage,
     step,
     draw,
     setWeights,

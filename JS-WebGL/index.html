@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <head>
   <meta charset="utf-8" />
   <link href="./app.css" rel="stylesheet">
@@ -34,7 +33,7 @@
       </div>
       <div id="speed-info">
         <div id="speed-modifier-wrapper">
-          <input type="range" id="speed" min="-3" max="3" step="1" value="0">
+          <input type="range" id="speed" min="-3" max="3" step="1" value="-2">
           <span id="ticks"></span>
         </div>
         <div id="status">
@@ -49,10 +48,14 @@
         </div>
       </div>
     </div>
+
+    <div id="damage-panel">
+      <button id="circular-damage" class="btn d-btn">D</button>
+    </div>
   </div>
   
   <script type="module">
-      import { createDemo } from './demo.js'
-      createDemo('main-wrapper-1');
+      import { createDemo } from './demo.js';
+      let demo = createDemo('main-wrapper-1');  
   </script>
 </body>

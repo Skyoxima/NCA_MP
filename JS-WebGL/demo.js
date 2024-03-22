@@ -66,6 +66,7 @@ export function createDemo(divId) {
         span.className = 'tickspan'
       })
       $('#reset').onclick = demo.reset;
+      $("#circular-damage").onclick = demo.circularDamage
       $('#play-pause').onclick = (e) => {
         paused = !paused;
         console.log(e.currentTarget.classList.toggle('active'))
@@ -131,7 +132,7 @@ export function createDemo(divId) {
       const model = await r.json();
       if (!demo) {
         demo = createCA(gl, model, [W, H]);
-        initUI();        
+        initUI();
         requestAnimationFrame(render);
       } else {
         demo.setWeights(model);
