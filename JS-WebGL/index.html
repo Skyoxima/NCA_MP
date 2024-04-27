@@ -12,50 +12,63 @@
   <p class="title">Image Morphogenesis using Neural Cellular Automata</p>
 
   <div id="main-wrapper-1" class="main-wrapper" >
+    <!-- <canvas id="static-canvas" width="768" height="768"></canvas> -->
     <!--~ Main Canvas -->
     <canvas id="demo-canvas" width="768" height="768"></canvas>
     
     <!--~ Emoji selection hotbar -->
-    <div id="emoji-selector"></div>
-    
-    <div id="control-panel">
-      <div id="c-btn-wrapper">
-        <button class="c-btn btn" id="reset">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M12 4a7.992 7.992 0 0 1 6.616 3.5H16v2h6v-6h-2V6a9.984 9.984 0 0 0-8-4C6.477 2 2 6.477 2 12h2a8 8 0 0 1 8-8m8 8a8 8 0 0 1-14.616 4.5H8v-2H2v6h2V18a9.984 9.984 0 0 0 8 4c5.523 0 10-4.477 10-10z"/>
-          </svg>
-        </button>
-        <button class="c-btn btn" id="play-pause">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M6 3h2v18H6zm10 0h2v18h-2z"/>
-          </svg>
-        </button>
-      </div>
-      <div id="speed-info">
-        <div id="speed-modifier-wrapper">
-          <input type="range" id="speed" min="-3" max="3" step="1" value="-2">
-          <span id="ticks"></span>
-        </div>
-        <div id="status">
-          <div class="sc-wrapper">
-            <div>Step</div>
-            <div id="stepCount"></div>
-          </div>
-          <div class="sc-wrapper">
-            <div>Iterations/s</div>
-            <div id="ips"></div>
-          </div>
-        </div>
-      </div>
+    <div id="emoji-selector">
     </div>
+    
+    <div class="leftside-wrapper">
+      <p class="control-title">Controls</p>
+      <div id="control-panel">
+        <div id="c-btn-wrapper">
+          <button class="c-btn btn" id="reset">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M12 4a7.992 7.992 0 0 1 6.616 3.5H16v2h6v-6h-2V6a9.984 9.984 0 0 0-8-4C6.477 2 2 6.477 2 12h2a8 8 0 0 1 8-8m8 8a8 8 0 0 1-14.616 4.5H8v-2H2v6h2V18a9.984 9.984 0 0 0 8 4c5.523 0 10-4.477 10-10z"/>
+            </svg>
+          </button>
+          <button class="c-btn btn" id="play-pause">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M6 3h2v18H6zm10 0h2v18h-2z"/>
+            </svg>
+          </button>
+        </div>
+        <div id="speed-info">
+          <div id="speed-modifier-wrapper">
+            <input type="range" id="speed" min="-3" max="3" step="1" value="0">
+            <span id="ticks"></span>
+          </div>
+          <div id="status">
+            <div class="sc-wrapper">
+              <div>Step</div>
+              <div id="stepCount"></div>
+            </div>
+            <div class="sc-wrapper">
+              <div>Iterations/s</div>
+              <div id="ips"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <p class="control-title">Trained Mode</p>
+      <div id="modes-panel" class="minor-panel">
+        <button id="L2-mode" class="btn m-btn">L2</button>
+        <button id="Hu-mode" class="btn m-btn">Hu</button>
+      </div>
 
-    <div id="damage-panel">
-      <button id="circular-damage" class="btn d-btn">D</button>
+      <p class="control-title">Induce Damage</p>
+      <div id="damage-panel" class="minor-panel">
+        <button id="circular-damage" class="btn d-btn">D</button>
+      </div>
+  
     </div>
   </div>
   
   <script type="module">
       import { createDemo } from './demo.js';
-      let demo = createDemo('main-wrapper-1');  
+      let demo = createDemo('main-wrapper-1', "#demo-canvas");  
   </script>
 </body>

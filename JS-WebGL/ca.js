@@ -12,6 +12,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+
 const CHANNEL_N = 16;
 const MAX_ACTIVATION_VALUE = 10.0;
 
@@ -225,10 +226,11 @@ const PROGRAMS = {
     }`,
 };
 
+//~ To read the saved models
 function decodeArray(s, arrayType) {
   const data = atob(s);
   const buf = new Uint8Array(data.length);
-  for (var i = 0; i < data.length; ++i) {
+  for (let i = 0; i < data.length; ++i) {
     buf[i] = data.charCodeAt(i);
   }
   return new arrayType(buf.buffer);
@@ -236,7 +238,7 @@ function decodeArray(s, arrayType) {
 
 export function createCA(gl, layerWeights, gridSize) {
   gridSize = gridSize || [96, 96];
-  const [gridW, gridH] = gridSize;
+  const [gridW, gridH] = gridSize; // this is just simple destructuring, don't get confused
 
   function createPrograms() {
     const res = {};
@@ -333,7 +335,7 @@ export function createCA(gl, layerWeights, gridSize) {
   const hiddenBuf = createTensor(gridW, gridH, 128, "relu");
   const updateBuf = createTensor(gridW, gridH, CHANNEL_N);
   const maskedUpdateBuf = createTensor(gridW, gridH, CHANNEL_N);
-
+  
   let layerTex1 = createDenseInfo(layerWeights[0]);
   let layerTex2 = createDenseInfo(layerWeights[1]);
 
@@ -408,8 +410,11 @@ export function createCA(gl, layerWeights, gridSize) {
   }
 
   function step() {
+    //~ at each step the NN is run through to stochastically update cell states at each timestep
     for (const op of ops) op();
     [stateBuf, newStateBuf] = [newStateBuf, stateBuf];
+    
+    //! Calculate the squared difference between stateBuf and newStateBuf
 
     totalStepCount += 1;
     fpsCount += 1;

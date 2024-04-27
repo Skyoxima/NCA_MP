@@ -7,7 +7,6 @@ fetch('./emojis.json')
   emojis = data.emojis
 })
 
-
 function isInViewport(element) {
   var rect = element.getBoundingClientRect();
   var html = document.documentElement;
@@ -16,8 +15,8 @@ function isInViewport(element) {
   return rect.top < h && rect.left < w && rect.bottom > 0 && rect.right > 0;
 }
 
-export function createDemo(divId) {
-    const root = document.getElementById(divId);
+export function createDemo(divID, canvasID) {
+    const root = document.getElementById(divID);
     const $ = (q) => root.querySelector(q);
     const $$ = (q) => root.querySelectorAll(q);
 
@@ -26,10 +25,11 @@ export function createDemo(divId) {
     let demo;
     const modelDir = 'webgl_models8';
     let target = '🦋';
-    let experiment = 'ex3';
+    let model = 'L2'
+    let experiment = model + 'ex3';
     let paused = false;
 
-    const canvas = $('#demo-canvas');
+    const canvas = $(canvasID);
     const gl = canvas.getContext("webgl");
     canvas.width = W * 5;
     canvas.height = H * 5;
@@ -40,9 +40,6 @@ export function createDemo(divId) {
         e.classList.add(e.id == target ? 'active' : 'inactive');
         e.classList.remove(e.id !== target ? 'active' : 'inactive');
       });
-      // $$('#model-selector input').forEach(e=>{
-      //   e.checked = e.id==experiment;
-      // });
     }
 
     function initUI() {
@@ -50,7 +47,12 @@ export function createDemo(divId) {
         const btn = document.createElement('button')
         btn.id = c;
         btn.className = 'e-btn btn'
-        btn.innerHTML = c
+        
+        //!
+
+        btn.innerHTML += c
+        
+        
         btn.onclick = () => {
           target = c
           updateModel();
