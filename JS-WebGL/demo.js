@@ -1,10 +1,17 @@
 import { createCA } from './ca.js'
 
-let emojis;
-fetch('./emojis.json')
+let circEmojis, bilatEmojis, asymmEmojis;
+// fetch('./emojis.json')
+// .then(response => response.json())
+// .then(data => {
+//   emojis = data.emojis
+// })
+fetch('./emojis_2.json')
 .then(response => response.json())
 .then(data => {
-  emojis = data.emojis
+  circEmojis = data["circular-ems"]
+  bilatEmojis = data["symm-ems"]
+  asymmEmojis = data["asymm-ems"]
 })
 
 function isInViewport(element) {
@@ -43,27 +50,26 @@ export function createDemo(divID, canvasID) {
     }
 
     function initUI() {
-      for (let c of emojis) {
-        const btn = document.createElement('button')
-        btn.id = c;
-        btn.className = 'e-btn btn'
-        
-        //!
-
-        btn.innerHTML += c
-        
-        
-        btn.onclick = () => {
-          target = c
-          updateModel();
+      function selectorInit(arr, selectorDiv) {
+        for (let c of arr) {
+          const btn = document.createElement('button')
+          btn.id = c;
+          btn.className = 'e-btn btn'
+          btn.innerHTML += c
+          btn.onclick = () => {
+            target = c
+            updateModel();
+          }
+          $(selectorDiv).appendChild(btn);
         }
-        $('#emoji-selector').appendChild(btn);
       }
+      selectorInit(circEmojis, "#circular-selector");
+      selectorInit(bilatEmojis, "#bilateral-selector");
+      selectorInit(asymmEmojis, "#asymm-selector");
 
       speedLabels.forEach(e => {
         const span = document.createElement('span')
         $('#ticks').appendChild(span)
-        // span.innerHTML = `|<br>${e}`
         span.innerHTML = `|<br>`
         span.className = 'tickspan'
       })

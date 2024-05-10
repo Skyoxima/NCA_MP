@@ -12,14 +12,16 @@
   <p class="title">Image Morphogenesis using Neural Cellular Automata</p>
 
   <div id="main-wrapper-1" class="main-wrapper" >
-    <!-- <canvas id="static-canvas" width="768" height="768"></canvas> -->
     <!--~ Main Canvas -->
     <canvas id="demo-canvas" width="768" height="768"></canvas>
     
     <!--~ Emoji selection hotbar -->
-    <div id="emoji-selector">
+    <div id="selector-wrapper">
+      <div id="circular-selector" class="emoji-selector"></div>
+      <div id="bilateral-selector" class="emoji-selector"></div>
+      <div id="asymm-selector" class="emoji-selector"></div>
     </div>
-    
+
     <div class="leftside-wrapper">
       <p class="control-title">Controls</p>
       <div id="control-panel">
@@ -61,9 +63,12 @@
 
       <p class="control-title">Induce Damage</p>
       <div id="damage-panel" class="minor-panel">
-        <button id="circular-damage" class="btn d-btn">D</button>
+        <button id="circular-damage" class="btn d-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
+            <path fill="currentColor" d="M128 28a100 100 0 1 0 100 100A100.11 100.11 0 0 0 128 28m0 192a92 92 0 1 1 92-92a92.1 92.1 0 0 1-92 92"/>
+          </svg>
+        </button>
       </div>
-  
     </div>
   </div>
   
