@@ -43,7 +43,15 @@ export function createDemo(divID, canvasID) {
     const speedLabels = ['1/60x', '1/10x', '1/2x', '1x', '2x', '4x', '<b>max</b>']
     
     function updateUI() {
-      $$('#emoji-selector *').forEach(e => {
+      $$('#circular-selector *').forEach(e => {
+        e.classList.add(e.id == target ? 'active' : 'inactive');
+        e.classList.remove(e.id !== target ? 'active' : 'inactive');
+      });
+      $$('#bilateral-selector *').forEach(e => {
+        e.classList.add(e.id == target ? 'active' : 'inactive');
+        e.classList.remove(e.id !== target ? 'active' : 'inactive');
+      });
+      $$('#asymm-selector *').forEach(e => {
         e.classList.add(e.id == target ? 'active' : 'inactive');
         e.classList.remove(e.id !== target ? 'active' : 'inactive');
       });
