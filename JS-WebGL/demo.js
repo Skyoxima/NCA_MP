@@ -1,11 +1,6 @@
 import { createCA } from './ca.js'
 
 let circEmojis, bilatEmojis, asymmEmojis;
-// fetch('./emojis.json')
-// .then(response => response.json())
-// .then(data => {
-//   emojis = data.emojis
-// })
 fetch('./emojis_2.json')
 .then(response => response.json())
 .then(data => {
@@ -32,8 +27,8 @@ export function createDemo(divID, canvasID) {
     let demo;
     const modelDir = 'webgl_models8';
     let target = '🦋';
-    let model = 'L2'
-    let experiment = model + 'ex3';
+    let modelName = 'L2'
+    let experiment = modelName + 'ex3';
     let paused = false;
 
     const canvas = $(canvasID);
@@ -87,6 +82,24 @@ export function createDemo(divID, canvasID) {
         paused = !paused;
         console.log(e.currentTarget.classList.toggle('active'))
       };
+      $("#Hu-mode").onclick = () => {
+        modelName = 'HU';
+        experiment = modelName + 'ex3';
+        if(!$("#Hu-mode").classList.contains('active')) {
+          $("#Hu-mode").classList.add('active');
+          $("#L2-mode").classList.remove('active');
+        } 
+        updateModel();
+      }
+      $("#L2-mode").onclick = () => {
+        modelName = 'L2';
+        if(!$("#L2-mode").classList.contains('active')) {
+          $("#L2-mode").classList.add('active');
+          $("#Hu-mode").classList.remove('active');
+        } 
+        experiment = modelName + 'ex3';
+        updateModel();
+      }
 
       //~ translates the co-ordinates of clicks from the outside of the canvas to the inside
       function canvasToGrid(x, y) {
@@ -143,8 +156,8 @@ export function createDemo(divID, canvasID) {
 
     //~ Initial loading and when another emoji is selected
     async function updateModel() {
-      console.log(`${modelDir}/${experiment}_${target}.json`)
-      const r = await fetch(`${modelDir}/${experiment}_${target}.json`);
+      console.log(`${modelDir}/${modelName}/${experiment}_${target}.json`)
+      const r = await fetch(`${modelDir}/${modelName}/${experiment}_${target}.json`);
       const model = await r.json();
       if (!demo) {
         demo = createCA(gl, model, [W, H]);

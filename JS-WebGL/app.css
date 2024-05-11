@@ -180,5 +180,10 @@ body {
   border-radius: 1rem;
   box-shadow:  -7px -7px 15px #c2e9fb,
   7px 7px 15px #a1c4fd;
+}
 
+.m-btn.active {
+  box-shadow: 
+    inset -2px -2px 5px rgba(0, 0, 0, 0.25),
+    inset 2px 2px 5px rgba(0, 0, 0, 0.25);
 }
