@@ -409,6 +409,27 @@ export function createCA(gl, layerWeights, gridSize) {
     paint(gridW / 2, gridH / 2, 8, "clear");
   }
 
+  function verticalDamage() {
+    const centerX = Math.floor(gridW / 2);
+    const centerY = Math.floor(gridH / 2);
+    console.log(centerX, centerY)
+    for (let x = centerX; x < gridW; x++) {
+      for (let y = 0; y < gridH; y++) {
+          paint(x, y, 1, "clear");
+      }
+    }
+}
+
+  function horizontalDamage() {
+    const centerX = Math.floor(gridW / 2);
+    const centerY = Math.floor(gridH / 2);    
+    for (let y = centerY; y < gridH; y++) {
+      for (let x = 0; x < gridW; x++) {
+          paint(x, y, 1, "clear");
+      }
+    }
+  }
+
   function step() {
     //~ at each step the NN is run through to stochastically update cell states at each timestep
     for (const op of ops) op();
@@ -479,6 +500,8 @@ export function createCA(gl, layerWeights, gridSize) {
   return {
     reset,
     circularDamage,
+    verticalDamage,
+    horizontalDamage,
     step,
     draw,
     setWeights,

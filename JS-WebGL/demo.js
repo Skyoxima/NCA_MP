@@ -77,7 +77,9 @@ export function createDemo(divID, canvasID) {
         span.className = 'tickspan'
       })
       $('#reset').onclick = demo.reset;
-      $("#circular-damage").onclick = demo.circularDamage
+      $("#circular-damage").onclick = demo.circularDamage;
+      $("#vertical-damage").onclick = demo.verticalDamage;
+      $("#horizontal-damage").onclick = demo.horizontalDamage;
       $('#play-pause').onclick = (e) => {
         paused = !paused;
         console.log(e.currentTarget.classList.toggle('active'))
