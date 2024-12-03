@@ -26,7 +26,7 @@ export function createDemo(divID, canvasID) {
     const W=96, H=96;
     let demo;
     const modelDir = 'webgl_models8';
-    let target = '🦋';
+    let target = '🌍';
     let modelName = 'L2'
     let experiment = modelName + 'ex3';
     let paused = false;
@@ -213,3 +213,7 @@ export function createDemo(divID, canvasID) {
       requestAnimationFrame(render);
     }
 }
+
+//! Adding live loss and then publishing the website would really really add the appropriate level of detail to this project.
+//! One idea to get the properly simulated full emote's vector for live loss calculation is that I can wait till 100 steps (avg. steps required to form an emote from scratch and then record this vector)
+//! Then every subsequent step should use this vector and the current vector to calculate loss...
